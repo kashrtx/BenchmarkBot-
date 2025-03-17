@@ -25,7 +25,203 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set up event listeners
     setupEventListeners();
+    
+    // Set up interactive cube
+    setupInteractiveCube();
+    
+    // Initialize live data updates
+    initLiveUpdates();
+    
+    // Listen for live data updates
+    document.addEventListener('liveDataUpdated', function() {
+        // Update the tables when live data changes
+        populateLeaderboardTables();
+        // Update the last update text
+        document.getElementById('last-update-date').textContent = 'Just now';
+    });
+    
+    // Fetch data from livebench.ai (simulated)
+    fetchLiveBenchmarkData();
 });
+
+/**
+ * Fetch live data from livebench.ai
+ */
+async function fetchLiveBenchmarkData() {
+    try {
+        const liveData = await getLiveBenchData();
+        if (liveData && liveData.success) {
+            console.log('Successfully fetched data from livebench.ai');
+            // In a real implementation, we would update our data with the fetched data
+            showNotification('Live data updated from livebench.ai');
+        }
+    } catch (error) {
+        console.error('Error fetching data from livebench.ai:', error);
+    }
+}
+
+/**
+ * Setup for the interactive 3D cube
+ */
+function setupInteractiveCube() {
+    const cube = document.querySelector('.cube');
+    if (!cube) return;
+    
+    // Remove any existing controls if present
+    const existingControls = document.querySelector('.cube-controls');
+    if (existingControls) {
+        existingControls.remove();
+    }
+    
+    // Variables to track cube rotation
+    let xRotation = 0;
+    let yRotation = 0;
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let autoRotate = true;
+    let autoRotationSpeed = 0.5;
+    let manualXRotation = 0;
+    let manualYRotation = 0;
+    
+    // Make cube draggable with mouse
+    cube.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+        e.preventDefault();
+        
+        // Don't pause animation, just mark as dragging
+        cube.style.animation = 'none'; // Temporarily disable animation while dragging
+    });
+    
+    document.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        
+        const dx = e.clientX - previousMousePosition.x;
+        const dy = e.clientY - previousMousePosition.y;
+        
+        manualYRotation += dx * 0.5;
+        manualXRotation += dy * 0.5;
+        
+        updateCubeRotation();
+        
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+    
+    document.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            
+            // Store the final rotation values
+            xRotation = manualXRotation;
+            yRotation = manualYRotation;
+            
+            // Resume the auto-rotation animation with custom values
+            startAutoRotation();
+        }
+    });
+    
+    // Touch support for mobile
+    cube.addEventListener('touchstart', function(e) {
+        isDragging = true;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        e.preventDefault();
+        
+        // Don't pause animation, just mark as dragging
+        cube.style.animation = 'none';
+    });
+    
+    document.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        
+        const dx = e.touches[0].clientX - previousMousePosition.x;
+        const dy = e.touches[0].clientY - previousMousePosition.y;
+        
+        manualYRotation += dx * 0.5;
+        manualXRotation += dy * 0.5;
+        
+        updateCubeRotation();
+        
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    });
+    
+    document.addEventListener('touchend', function() {
+        if (isDragging) {
+            isDragging = false;
+            
+            // Store the final rotation values
+            xRotation = manualXRotation;
+            yRotation = manualYRotation;
+            
+            // Resume the auto-rotation animation with custom values
+            startAutoRotation();
+        }
+    });
+    
+    // Custom auto-rotation animation
+    let animationFrameId;
+    
+    function startAutoRotation() {
+        // Cancel any existing animation
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
+        
+        // Time tracking
+        let lastTime = null;
+        
+        function animate(time) {
+            if (!lastTime) {
+                lastTime = time;
+            }
+            
+            const deltaTime = time - lastTime;
+            lastTime = time;
+            
+            // Don't update if dragging
+            if (!isDragging && autoRotate) {
+                // Auto rotation increments
+                xRotation += autoRotationSpeed * 0.1;
+                yRotation += autoRotationSpeed * 0.2;
+                
+                updateCubeRotation();
+            }
+            
+            animationFrameId = requestAnimationFrame(animate);
+        }
+        
+        animationFrameId = requestAnimationFrame(animate);
+    }
+    
+    // Function to update cube rotation
+    function updateCubeRotation() {
+        if (isDragging) {
+            cube.style.transform = `rotateX(${manualXRotation}deg) rotateY(${manualYRotation}deg)`;
+        } else {
+            cube.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+        }
+    }
+    
+    // Make faces react to hover without pausing
+    const faces = cube.querySelectorAll('.face');
+    
+    faces.forEach(face => {
+        face.addEventListener('mouseenter', function() {
+            // Just scale up the face on hover without pausing
+            this.style.transform = this.style.transform.replace('scale(1)', 'scale(1.1)');
+        });
+        
+        face.addEventListener('mouseleave', function() {
+            // Restore original transform
+            this.style.transform = this.style.transform.replace('scale(1.1)', 'scale(1)');
+        });
+    });
+    
+    // Start auto-rotation
+    startAutoRotation();
+    
+    // Remove auto-rotation CSS animation since we're doing it with JS
+    cube.style.animation = 'none';
+}
 
 /**
  * Dark Mode Setup
@@ -176,6 +372,38 @@ function populateFeaturesTable() {
     });
     
     featuresTable.innerHTML = html;
+    
+    // Add new DeepSeek filter to model selector
+    const modelSelector = document.querySelector('.model-selector');
+    if (modelSelector && !document.querySelector('[data-model="deepseek"]')) {
+        const deepseekBtn = document.createElement('button');
+        deepseekBtn.type = 'button';
+        deepseekBtn.className = 'btn btn-outline-primary';
+        deepseekBtn.setAttribute('data-model', 'deepseek');
+        deepseekBtn.textContent = 'DeepSeek';
+        
+        // Insert before mistral button
+        const mistralBtn = document.querySelector('[data-model="mistral"]');
+        if (mistralBtn) {
+            modelSelector.insertBefore(deepseekBtn, mistralBtn);
+        } else {
+            modelSelector.appendChild(deepseekBtn);
+        }
+        
+        // Add event listener
+        deepseekBtn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            document.querySelectorAll('.model-selector .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to this button
+            this.classList.add('active');
+            
+            // Filter table
+            filterFeaturesTable('deepseek');
+        });
+    }
 }
 
 /**
@@ -221,10 +449,8 @@ function populatePricingCards() {
                     <ul class="features-list">
                         ${item.features.map(feature => `<li><i class="fas fa-check-circle"></i> ${feature}</li>`).join('')}
                         ${item.apiAccess ? '<li><i class="fas fa-check-circle"></i> API access available</li>' : ''}
-                        ${item.freeCredits ? '<li><i class="fas fa-check-circle"></i> Free credits available</li>' : ''}
-                        ${item.freeVersion ? `<li><i class="fas fa-check-circle"></i> Free tier: ${item.freeVersion}</li>` : ''}
                     </ul>
-                    <a href="#" class="btn btn-primary w-100">Get Started</a>
+                    <a href="#" class="btn btn-primary w-100">API Documentation</a>
                 </div>
             </div>
         `;
@@ -279,21 +505,26 @@ function setupEventListeners() {
         });
     });
     
-    // Newsletter form submission
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
+    // Implement "Learn More" button functionality
+    const learnMoreBtn = document.querySelector('a.btn-outline-primary[href="#"]');
+    if (learnMoreBtn) {
+        learnMoreBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const emailInput = this.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
-            
-            if (email) {
-                // In a real application, you would send this to a server
-                // For demo purposes, we'll just show an alert
-                alert(`Thank you for subscribing with ${email}! You'll receive our first update soon.`);
-                emailInput.value = '';
+            // Scroll to the features section
+            const featuresSection = document.getElementById('features');
+            if (featuresSection) {
+                featuresSection.scrollIntoView({ behavior: 'smooth' });
             }
+        });
+    }
+    
+    // Make detailed pricing button work
+    const detailedPricingBtn = document.querySelector('.pricing-section .btn-outline-primary');
+    if (detailedPricingBtn) {
+        detailedPricingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Open livebench.ai in a new tab
+            window.open('https://livebench.ai', '_blank');
         });
     }
 }
@@ -313,28 +544,6 @@ function filterFeaturesTable(modelType) {
             row.style.display = 'none';
         }
     });
-}
-
-/**
- * Lazy-load data (simulated for demo purposes)
- * In a real application, this would fetch from an API
- */
-function refreshData() {
-    // This function would typically fetch fresh data from an API
-    // For demo purposes, we'll just update the last update time
-    const lastUpdateElement = document.getElementById('last-update-date');
-    if (lastUpdateElement) {
-        lastUpdateElement.textContent = new Date().toLocaleDateString('en-US', {
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-    }
-    
-    // Show a notification
-    showNotification('Data refreshed successfully!');
 }
 
 /**

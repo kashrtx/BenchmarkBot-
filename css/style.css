@@ -93,7 +93,8 @@ section {
 .dark-mode .features-table,
 .dark-mode .leaderboard-table,
 .dark-mode .newsletter-container,
-.dark-mode .about-card {
+.dark-mode .about-card,
+.dark-mode .pricing-card {
     background-color: var(--dark-card);
     color: var(--dark-text);
     border-color: #333;
@@ -131,6 +132,47 @@ section {
     background-color: var(--dark-card);
     color: var(--secondary-color);
     border-color: #444;
+}
+
+/* Fix for footer text in dark mode */
+.dark-mode .footer {
+    background-color: #151529;
+}
+
+.dark-mode .footer-links a,
+.dark-mode .legal-links a {
+    color: #ddd;
+}
+
+.dark-mode .footer-links a:hover,
+.dark-mode .legal-links a:hover {
+    color: var(--secondary-color);
+}
+
+.dark-mode .social-link {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .about-section {
+    background-color: var(--dark-bg);
+}
+
+.dark-mode .features-section,
+.dark-mode .pricing-section,
+.dark-mode .newsletter-section {
+    background-color: #151529;
+}
+
+.dark-mode .stats-section {
+    background-color: rgba(108, 92, 231, 0.1);
+}
+
+.dark-mode .leaderboard-section {
+    background-color: var(--dark-bg);
+}
+
+.dark-mode .hero-section {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(26, 26, 46, 0.9) 100%);
 }
 
 /* Navbar Styles */
@@ -250,7 +292,7 @@ input:checked + .slider:before {
     pointer-events: none;
 }
 
-/* 3D Cube Animation */
+/* 3D Cube Animation - Interactive Version */
 .hero-image {
     display: flex;
     justify-content: center;
@@ -265,6 +307,12 @@ input:checked + .slider:before {
     position: relative;
     transform-style: preserve-3d;
     animation: cube-rotate 20s infinite linear;
+    cursor: grab;
+    transition: transform 0.2s ease;
+}
+
+.cube:active {
+    cursor: grabbing;
 }
 
 .face {
@@ -281,6 +329,11 @@ input:checked + .slider:before {
     box-shadow: 0 0 20px rgba(108, 92, 231, 0.4) inset;
     border-radius: 10px;
     backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.face:hover {
+    background: rgba(108, 92, 231, 1);
 }
 
 .face.front {
@@ -824,4 +877,46 @@ hr {
     .newsletter-container {
         padding: 20px;
     }
+}
+
+/* Fix link colors in dark mode for all sections */
+.dark-mode a:not(.btn):not(.navbar-brand):not(.nav-link):not(.social-link):not(.footer-links a):not(.legal-links a) {
+    color: var(--secondary-color);
+}
+
+.dark-mode a:not(.btn):not(.navbar-brand):not(.nav-link):not(.social-link):hover {
+    color: var(--primary-color-hover);
+}
+
+.dark-mode .section-header h2 {
+    color: var(--dark-text);
+}
+
+.dark-mode .lead {
+    color: var(--dark-text);
+}
+
+.dark-mode .pricing-card .model-name {
+    color: var(--dark-text);
+}
+
+.dark-mode .pricing-card .price {
+    color: var(--secondary-color);
+}
+
+.dark-mode .pricing-card .features-list li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .pricing-card .features-list i {
+    color: var(--secondary-color);
+}
+
+.dark-mode .pricing-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 206, 201, 0.2);
+}
+
+/* Remove the cube-controls section since we're not using it anymore */
+.cube-controls {
+    display: none;
 } 

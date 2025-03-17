@@ -2,6 +2,10 @@
 
 BenchmarkBot is a modern, responsive website that provides up-to-date information about the best AI models available in the market. It tracks and compares AI models based on benchmarks, usage metrics, features, and pricing plans.
 
+## Live Demo
+
+**Visit the live website here: [https://benchmarkbot.netlify.app](https://benchmarkbot.netlify.app)**
+
 ## Features
 
 - **Real-time AI Model Comparison**: View and compare top AI models based on various benchmarks and metrics.
@@ -10,7 +14,16 @@ BenchmarkBot is a modern, responsive website that provides up-to-date informatio
 - **Pricing Information**: Access detailed pricing information for the top AI models.
 - **Dark Mode**: Toggle between light and dark mode for comfortable viewing.
 - **Responsive Design**: Fully responsive design works on desktop, tablet, and mobile devices.
-- **Modern UI with 3D Effects**: Beautiful modern interface with 3D cube animation and visual effects.
+- **Modern UI with Interactive 3D Cube**: Beautiful modern interface with interactive 3D cube animation you can spin and play with.
+
+## Data Sources
+
+The benchmark data is sourced from various platforms including:
+- [LiveBench.ai](https://livebench.ai)
+- [LLM-Stats](https://llm-stats.com/)
+- [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)
+- [LMSYS Chatbot Arena](https://chat.lmsys.org/)
+- Official documentation from AI providers
 
 ## Technology Stack
 
@@ -20,7 +33,9 @@ BenchmarkBot is a modern, responsive website that provides up-to-date informatio
 - AOS library for scroll animations
 - Google Fonts
 
-## Getting Started
+## Local Development
+
+If you want to run the project locally:
 
 1. Clone the repository:
 ```bash
@@ -29,34 +44,15 @@ git clone https://github.com/yourusername/BenchmarkBot.git
 
 2. Open `index.html` in your browser to view the website locally.
 
-3. No build steps required! The website can be directly deployed to hosting services like GitHub Pages or Netlify.
+No build steps required! The website is a static site using CDN-linked libraries.
 
-## Data Sources
+## Data Updates
 
-The benchmark data is sourced from various platforms including:
-- [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard)
-- [LMSYS Chatbot Arena](https://chat.lmsys.org/)
-- Official documentation from AI providers
-
-## Customization
-
-You can easily update the data by modifying the `data.js` file in the `js` directory. This allows you to keep the benchmark information current and accurate.
+You can easily update the model data by modifying the `data.js` file in the `js` directory. The website is configured to simulate live data updates from sources like livebench.ai.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Deployment
-
-To deploy this site on Netlify:
-
-1. Sign up for a Netlify account
-2. Connect your GitHub repository
-3. Set the build command to blank (not required)
-4. Set the publish directory to the root of the project
-5. Click "Deploy"
-
-No build steps are required since this is a static site using CDN-linked libraries.
 
 ## Acknowledgments
 
@@ -64,3 +60,4 @@ No build steps are required since this is a static site using CDN-linked librari
 - Font Awesome for the icon set
 - AOS library for the scroll animations
 - Google Fonts for the typography
+- LiveBench.ai for benchmark data
