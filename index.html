@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BenchmarkBot - AI Model Comparison Hub</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="light-mode">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>BenchmarkBot
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaderboard">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="theme-switch-wrapper me-3">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <a href="#" class="btn btn-primary">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-4">Stay Updated with the <span class="highlight">Best AI Models</span></h1>
+                    <p class="lead mb-4">Daily benchmarks, features, usage metrics, and pricing comparisons of the top AI models in the market.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#leaderboard" class="btn btn-primary btn-lg">View Leaderboard</a>
+                        <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="hero-image">
+                        <div class="cube">
+                            <div class="face front">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="face back">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="face right">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="face left">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="face top">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="face bottom">
+                                <i class="fas fa-server"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-card">
+                        <h2 class="counter">100+</h2>
+                        <p>AI Models Tracked</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-card">
+                        <h2 class="counter">Daily</h2>
+                        <p>Updates</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-card">
+                        <h2 class="counter">20+</h2>
+                        <p>Benchmark Categories</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stat-card">
+                        <h2 class="counter">10+</h2>
+                        <p>Trusted Sources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">AI Model Leaderboard</h2>
+                <p class="lead">Comprehensive rankings based on performance metrics across various tasks</p>
+            </div>
+            
+            <!-- Leaderboard Tabs -->
+            <ul class="nav nav-tabs mb-4 justify-content-center" id="leaderboardTabs" role="tablist" data-aos="fade-up">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overall-tab" data-bs-toggle="tab" data-bs-target="#overall" type="button" role="tab" aria-controls="overall" aria-selected="true">Overall</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="reasoning-tab" data-bs-toggle="tab" data-bs-target="#reasoning" type="button" role="tab" aria-controls="reasoning" aria-selected="false">Reasoning</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="coding-tab" data-bs-toggle="tab" data-bs-target="#coding" type="button" role="tab" aria-controls="coding" aria-selected="false">Coding</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="math-tab" data-bs-toggle="tab" data-bs-target="#math" type="button" role="tab" aria-controls="math" aria-selected="false">Math</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="vision-tab" data-bs-toggle="tab" data-bs-target="#vision" type="button" role="tab" aria-controls="vision" aria-selected="false">Vision</button>
+                </li>
+            </ul>
+            
+            <!-- Tab Content -->
+            <div class="tab-content" id="leaderboardTabContent">
+                <div class="tab-pane fade show active" id="overall" role="tabpanel" aria-labelledby="overall-tab">
+                    <div class="table-responsive" data-aos="fade-up">
+                        <table class="table table-hover leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Provider</th>
+                                    <th>Overall Score</th>
+                                    <th>Reasoning</th>
+                                    <th>Coding</th>
+                                    <th>Math</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="overall-leaderboard">
+                                <!-- This will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="reasoning" role="tabpanel" aria-labelledby="reasoning-tab">
+                    <div class="table-responsive" data-aos="fade-up">
+                        <table class="table table-hover leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Provider</th>
+                                    <th>Reasoning Score</th>
+                                    <th>MMLU</th>
+                                    <th>HellaSwag</th>
+                                    <th>TruthfulQA</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reasoning-leaderboard">
+                                <!-- This will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="coding" role="tabpanel" aria-labelledby="coding-tab">
+                    <div class="table-responsive" data-aos="fade-up">
+                        <table class="table table-hover leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Provider</th>
+                                    <th>Coding Score</th>
+                                    <th>HumanEval</th>
+                                    <th>MBPP</th>
+                                    <th>DS-1000</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="coding-leaderboard">
+                                <!-- This will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="math" role="tabpanel" aria-labelledby="math-tab">
+                    <!-- Math leaderboard content -->
+                    <div class="table-responsive" data-aos="fade-up">
+                        <table class="table table-hover leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Provider</th>
+                                    <th>Math Score</th>
+                                    <th>GSM8K</th>
+                                    <th>MATH</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="math-leaderboard">
+                                <!-- This will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="vision" role="tabpanel" aria-labelledby="vision-tab">
+                    <!-- Vision leaderboard content -->
+                    <div class="table-responsive" data-aos="fade-up">
+                        <table class="table table-hover leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Model</th>
+                                    <th>Provider</th>
+                                    <th>Vision Score</th>
+                                    <th>MMMU</th>
+                                    <th>SEED-Bench</th>
+                                    <th>Last Updated</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vision-leaderboard">
+                                <!-- This will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4" data-aos="fade-up">
+                <p class="update-info">
+                    <i class="fas fa-sync-alt me-2"></i>Last update: <span id="last-update-date">Loading...</span>
+                </p>
+                <div class="data-sources">
+                    <small>Data sources: <a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank">Hugging Face Open LLM Leaderboard</a>, 
+                    <a href="https://chat.lmsys.org/" target="_blank">LMSYS Chatbot Arena</a>, and official documentation.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Comparison Section -->
+    <section id="features" class="features-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Model Features Comparison</h2>
+                <p class="lead">Compare capabilities and limitations of top AI models</p>
+            </div>
+            
+            <!-- Model Selector -->
+            <div class="text-center mb-4" data-aos="fade-up">
+                <div class="btn-group model-selector" role="group" aria-label="Model selector">
+                    <button type="button" class="btn btn-outline-primary active" data-model="all">All Models</button>
+                    <button type="button" class="btn btn-outline-primary" data-model="gpt">OpenAI</button>
+                    <button type="button" class="btn btn-outline-primary" data-model="claude">Anthropic</button>
+                    <button type="button" class="btn btn-outline-primary" data-model="gemini">Google</button>
+                    <button type="button" class="btn btn-outline-primary" data-model="llama">Meta</button>
+                    <button type="button" class="btn btn-outline-primary" data-model="mistral">Mistral AI</button>
+                </div>
+            </div>
+            
+            <!-- Features Table -->
+            <div class="table-responsive" data-aos="fade-up">
+                <table class="table features-table" id="features-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Context Length</th>
+                            <th>Vision</th>
+                            <th>Tool Usage</th>
+                            <th>Code Gen</th>
+                            <th>Fine-tuning</th>
+                            <th>RAG Support</th>
+                        </tr>
+                    </thead>
+                    <tbody id="features-tbody">
+                        <!-- This will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Pricing Comparison</h2>
+                <p class="lead">Find the most cost-effective AI solutions for your needs</p>
+            </div>
+            
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center" id="pricing-cards">
+                <!-- This will be populated by JavaScript -->
+            </div>
+            
+            <div class="mt-5 text-center" data-aos="fade-up">
+                <p><small>* Pricing information is subject to change. Please refer to the official provider's website for the most up-to-date information.</small></p>
+                <a href="#" class="btn btn-outline-primary">View Detailed Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section py-5">
+        <div class="container">
+            <div class="newsletter-container" data-aos="zoom-in">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h3 class="fw-bold">Stay Updated</h3>
+                        <p>Subscribe to our newsletter to receive weekly updates on AI model performance, new releases, and in-depth analysis.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Your email address" required>
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="section-header mb-4">
+                        <h2 class="display-5 fw-bold">About BenchmarkBot</h2>
+                    </div>
+                    <p>BenchmarkBot provides accurate, up-to-date information about AI language models, helping you make informed decisions about which models to use for your specific needs.</p>
+                    <p>Our data is gathered from multiple trusted sources including official benchmarks, leaderboards, and provider documentation, and is updated daily to ensure you have access to the most current information.</p>
+                    <p>We're committed to transparency and accuracy in our reporting, providing a comprehensive view of the AI landscape without bias toward any particular provider or model.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-image">
+                        <div class="floating-element">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="floating-element">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="floating-element">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="about-card">
+                            <h4>Our Mission</h4>
+                            <p>To provide accurate, unbiased, and up-to-date information about AI models to help users make informed decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="fw-bold"><i class="fas fa-robot me-2"></i>BenchmarkBot</h5>
+                    <p>Your trusted source for AI model benchmarks and comparisons.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h6 class="fw-bold">Navigation</h6>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#leaderboard">Leaderboard</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6 mb-4 mb-md-0">
+                    <h6 class="fw-bold">Resources</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">FAQs</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="fw-bold">Data Sources</h6>
+                    <ul class="footer-links">
+                        <li><a href="https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard" target="_blank">Hugging Face Leaderboard</a></li>
+                        <li><a href="https://chat.lmsys.org/" target="_blank">LMSYS Chatbot Arena</a></li>
+                        <li><a href="https://github.com/Significant-Gravitas/Auto-GPT-Benchmarks" target="_blank">Auto-GPT Benchmarks</a></li>
+                        <li><a href="https://github.com/mlcommons/dynabench" target="_blank">Dynabench</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p>&copy; 2025 KashRTX. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="legal-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
